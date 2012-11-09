@@ -1,0 +1,51 @@
+name: KaisoCraft
+author: Lucariatias
+version: 1.0.0-a
+main: me.lucariatias.plugins.kaisocraft.KaisoCraft
+commands:
+    guild:
+        usage: /<command> [subcommand] [args]...
+        description: All guild commands
+    party:
+        usage: /<command> [subcommand] [args]...
+        description: All party commands
+permissions:
+    kaisocraft.command.guild.create:
+        description: Allows the creation of guilds
+        default: true
+    kaisocraft.command.guild.addmember.own:
+        description: Allows you to add a member to your guild
+        default: true
+    kaisocraft.command.guild.addmember.other:
+        description: Allows you to add a member to another guild
+        default: op
+    kaisocraft.command.guild.removemember.own:
+        description: Allows you to remove a member from your own guild
+        default: true
+    kaisocraft.command.guild.removemember.other:
+        description: Allows you to remove a member from someone elses guild
+        default: op
+    kaisocraft.command.guild.info.own:
+        description: Allows you to view info on your guild
+        default: true
+    kaisocraft.command.guild.info.other:
+        description: Allows you to view info on someone elses guild
+        default: true
+    kaisocraft.command.guild.leave:
+        description: Allows you to leave a guild
+        default: true
+    kaisocraft.command.guild.disband:
+        description: Allows you to leave your own guild, therefore disbanding it
+        default: true
+    kaisocraft.command.guild.join:
+        description: Allows you to join a guild
+        default: true
+    kaisocraft.command.guild.list:
+        description: Allows you to list the current guilds
+        default: true
+    kaisocraft.command.guild.modify.own:
+        description: Allows you to modify your own guild
+        default: true
+    kaisocraft.command.guild.modify.other:
+        description: Allows you to modify other peoples guilds
+        default: op
