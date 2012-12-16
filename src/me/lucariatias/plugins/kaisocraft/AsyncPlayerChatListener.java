@@ -18,43 +18,43 @@ public class AsyncPlayerChatListener implements Listener {
 		SpellType type = null;
 		Integer level = null;
 		
-		if (event.getMessage().startsWith("ignis")) {
+		if (event.getMessage().toLowerCase().startsWith("ignis")) {
 			type = SpellType.FIRE;
 		}
 		
-		if (event.getMessage().startsWith("glacies")) {
+		if (event.getMessage().toLowerCase().startsWith("glacies")) {
 			type = SpellType.ICE;
 		}
 		
-		if (event.getMessage().startsWith("ventus")) {
+		if (event.getMessage().toLowerCase().startsWith("ventus")) {
 			type = SpellType.WIND;
 		}
 		
-		if (event.getMessage().startsWith("terra")) {
+		if (event.getMessage().toLowerCase().startsWith("terra")) {
 			type = SpellType.EARTH;
 		}
 		
-		if (event.getMessage().startsWith("aqua")) {
+		if (event.getMessage().toLowerCase().startsWith("aqua")) {
 			type = SpellType.WATER;
 		}
 		
-		if (event.getMessage().endsWith("unum")) {
+		if (event.getMessage().toLowerCase().endsWith("unum")) {
 			level = 1;
 		}
 		
-		if (event.getMessage().endsWith("duo")) {
+		if (event.getMessage().toLowerCase().endsWith("duo")) {
 			level = 2;
 		}
 		
-		if (event.getMessage().endsWith("tres")) {
+		if (event.getMessage().toLowerCase().endsWith("tres")) {
 			level = 3;
 		}
 		
-		if (event.getMessage().endsWith("quattor")) {
+		if (event.getMessage().toLowerCase().endsWith("quattor")) {
 			level = 4;
 		}
 		
-		if (event.getMessage().endsWith("quinque")) {
+		if (event.getMessage().toLowerCase().endsWith("quinque")) {
 			level = 5;
 		}
 		
@@ -69,6 +69,9 @@ public class AsyncPlayerChatListener implements Listener {
 				}
 				
 				event.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.POISON, level * 160, 0), true);
+				event.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.CONFUSION, level * 160, 0), true);
+				event.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, level * 160, 0), true);
+				event.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, level * 320, 2), true);
 			}
 			
 			if (type == SpellType.ICE) {
@@ -83,6 +86,9 @@ public class AsyncPlayerChatListener implements Listener {
 				}
 				
 				event.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.POISON, level * 160, 0), true);
+				event.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.CONFUSION, level * 160, 0), true);
+				event.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, level * 160, 0), true);
+				event.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, level * 320, 2), true);
 			}
 			
 			if (type == SpellType.EARTH) {
@@ -93,6 +99,9 @@ public class AsyncPlayerChatListener implements Listener {
 				}
 				
 				event.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.POISON, level * 160, 0), true);
+				event.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.CONFUSION, level * 160, 0), true);
+				event.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, level * 160, 0), true);
+				event.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.FAST_DIGGING, level * 320, 2), true);
 			}
 			
 			if (type == SpellType.WATER) {
@@ -103,6 +112,9 @@ public class AsyncPlayerChatListener implements Listener {
 				}
 				
 				event.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.POISON, level * 160, 0), true);
+				event.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.CONFUSION, level * 160, 0), true);
+				event.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, level * 160, 0), true);
+				event.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.WATER_BREATHING, level * 320, 2), true);
 			}
 			
 			if (type == SpellType.WIND) {
@@ -119,6 +131,10 @@ public class AsyncPlayerChatListener implements Listener {
 				}
 				
 				event.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.POISON, level * 160, 0), true);
+				event.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.CONFUSION, level * 160, 0), true);
+				event.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, level * 160, 0), true);
+				event.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.JUMP, level * 320, 2), true);
+				event.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.SPEED, level * 320, 2), true);
 			}
 		}
 	}
