@@ -20,11 +20,11 @@ public class GuildCommand implements CommandExecutor {
 					if (sender.hasPermission("kaisocraft.command.guild.create")) {
 						if (args.length >= 2) {
 							if (KaisoCraft.getPlayerGuild(sender.getName()) == null) {
-								if (KaisoCraft.getGuild(args[1].replaceAll("_", " ")) == null) {
-									KaisoCraft.createGuild(args[1].replaceAll("_", " "), sender.getName());
-									sender.sendMessage(ChatColor.GREEN + "The guild " + ChatColor.DARK_GREEN + args[1].replaceAll("_", " ") + ChatColor.GREEN + " was successfully created!");
+								if (KaisoCraft.getGuild(args[1]) == null) {
+									KaisoCraft.createGuild(args[1], sender.getName());
+									sender.sendMessage(ChatColor.GREEN + "The guild " + ChatColor.DARK_GREEN + args[1] + ChatColor.GREEN + " was successfully created!");
 								} else {
-									sender.sendMessage(ChatColor.RED + "The guild " + ChatColor.DARK_RED + args[1].replaceAll("_", " ") + ChatColor.RED + " already exists!");
+									sender.sendMessage(ChatColor.RED + "The guild " + ChatColor.DARK_RED + args[1] + ChatColor.RED + " already exists!");
 								}
 							} else {
 								sender.sendMessage(ChatColor.RED + "You are already a member of a guild!");
@@ -41,13 +41,13 @@ public class GuildCommand implements CommandExecutor {
 				
 				if (args[0].equalsIgnoreCase("addmember")) {
 					if (args.length >= 3) {
-						if (KaisoCraft.getGuild(args[1].replaceAll("_", " ")) != null) {
+						if (KaisoCraft.getGuild(args[1]) != null) {
 							if (Bukkit.getServer().getPlayer(args[2]) != null) {
-								if (KaisoCraft.getGuild(args[1].replaceAll("_", " ")).getLeader().equals(sender.getName())) {
+								if (KaisoCraft.getGuild(args[1]).getLeader().equals(sender.getName())) {
 									if (sender.hasPermission("kaisocraft.command.guild.addmember.own")) {
 										if (KaisoCraft.getPlayerGuild(Bukkit.getServer().getPlayer(args[2]).getName()) == null) {
-											KaisoCraft.getGuild(args[1].replaceAll("_", " ")).addPlayer(Bukkit.getServer().getPlayer(args[2]).getName());
-											sender.sendMessage(ChatColor.DARK_GREEN + Bukkit.getServer().getPlayer(args[2]).getName() + ChatColor.GREEN + " was added to the guild " + ChatColor.DARK_GREEN + args[1].replaceAll("_", " "));
+											KaisoCraft.getGuild(args[1]).addPlayer(Bukkit.getServer().getPlayer(args[2]).getName());
+											sender.sendMessage(ChatColor.DARK_GREEN + Bukkit.getServer().getPlayer(args[2]).getName() + ChatColor.GREEN + " was added to the guild " + ChatColor.DARK_GREEN + args[1]);
 										} else {
 											sender.sendMessage(ChatColor.RED + "That player already has a guild!");
 										}
@@ -59,7 +59,7 @@ public class GuildCommand implements CommandExecutor {
 									if (sender.hasPermission("kaisocraft.command.guild.addmember.other")) {
 										if (KaisoCraft.getPlayerGuild(Bukkit.getServer().getPlayer(args[2]).getName()) == null) {
 											KaisoCraft.getGuild(args[1]).addPlayer(Bukkit.getServer().getPlayer(args[2]).getName());
-											sender.sendMessage(ChatColor.DARK_GREEN + Bukkit.getServer().getPlayer(args[2]).getName() + ChatColor.GREEN + " was added to the guild " + ChatColor.DARK_GREEN + args[1].replaceAll("_", " "));
+											sender.sendMessage(ChatColor.DARK_GREEN + Bukkit.getServer().getPlayer(args[2]).getName() + ChatColor.GREEN + " was added to the guild " + ChatColor.DARK_GREEN + args[1]);
 										} else {
 											sender.sendMessage(ChatColor.RED + "That player already has a guild!");
 										}
@@ -82,15 +82,15 @@ public class GuildCommand implements CommandExecutor {
 				
 				if (args[0].equalsIgnoreCase("removemember")) {
 					if (args.length >= 3) {
-						if (KaisoCraft.getGuild(args[1].replaceAll("_", " ")) != null) {
+						if (KaisoCraft.getGuild(args[1]) != null) {
 							if (Bukkit.getServer().getPlayer(args[2]) != null) {
-								if (KaisoCraft.getGuild(args[1].replaceAll("_", " ")).getLeader().equals(sender.getName())) {
+								if (KaisoCraft.getGuild(args[1]).getLeader().equals(sender.getName())) {
 									if (sender.hasPermission("kaisocraft.command.guild.removemember.own")) {
-										if (KaisoCraft.getGuild(args[1].replaceAll("_", " ")).getPlayers().contains(Bukkit.getServer().getPlayer(args[2]))) {
-											KaisoCraft.getGuild(args[1].replaceAll("_", " ")).removePlayer(Bukkit.getServer().getPlayer(args[2]).getName());
-											sender.sendMessage(ChatColor.DARK_RED + Bukkit.getServer().getPlayer(args[2]).getName() + ChatColor.RED + " was removed from the guild " + ChatColor.DARK_RED + args[1].replaceAll("_", " "));
+										if (KaisoCraft.getGuild(args[1]).getPlayers().contains(Bukkit.getServer().getPlayer(args[2]))) {
+											KaisoCraft.getGuild(args[1]).removePlayer(Bukkit.getServer().getPlayer(args[2]).getName());
+											sender.sendMessage(ChatColor.DARK_RED + Bukkit.getServer().getPlayer(args[2]).getName() + ChatColor.RED + " was removed from the guild " + ChatColor.DARK_RED + args[1]);
 										} else {
-											sender.sendMessage(ChatColor.DARK_RED + Bukkit.getServer().getPlayer(args[2]).getName() + ChatColor.RED + " is not a member of the guild " + ChatColor.DARK_RED + args[1].replaceAll("_", " "));
+											sender.sendMessage(ChatColor.DARK_RED + Bukkit.getServer().getPlayer(args[2]).getName() + ChatColor.RED + " is not a member of the guild " + ChatColor.DARK_RED + args[1]);
 										}
 									} else {
 										sender.sendMessage(ChatColor.RED + "You do not have permission!");
@@ -98,11 +98,11 @@ public class GuildCommand implements CommandExecutor {
 									}
 								} else {
 									if (sender.hasPermission("kaisocraft.command.guild.removemember.other")) {
-										if (KaisoCraft.getGuild(args[1].replaceAll("_", " ")).getPlayers().contains(Bukkit.getServer().getPlayer(args[2]))) {
-											KaisoCraft.getGuild(args[1].replaceAll("_", " ")).removePlayer(Bukkit.getServer().getPlayer(args[2]).getName());
-											sender.sendMessage(ChatColor.DARK_RED + Bukkit.getServer().getPlayer(args[2]).getName() + ChatColor.RED + " was removed from the guild " + ChatColor.DARK_RED + args[1].replaceAll("_", " "));
+										if (KaisoCraft.getGuild(args[1]).getPlayers().contains(Bukkit.getServer().getPlayer(args[2]))) {
+											KaisoCraft.getGuild(args[1]).removePlayer(Bukkit.getServer().getPlayer(args[2]).getName());
+											sender.sendMessage(ChatColor.DARK_RED + Bukkit.getServer().getPlayer(args[2]).getName() + ChatColor.RED + " was removed from the guild " + ChatColor.DARK_RED + args[1]);
 										} else {
-											sender.sendMessage(ChatColor.DARK_RED + Bukkit.getServer().getPlayer(args[2]).getName() + ChatColor.RED + " is not a member of the guild " + ChatColor.DARK_RED + args[1].replaceAll("_", " "));
+											sender.sendMessage(ChatColor.DARK_RED + Bukkit.getServer().getPlayer(args[2]).getName() + ChatColor.RED + " is not a member of the guild " + ChatColor.DARK_RED + args[1]);
 										}
 									} else {
 										sender.sendMessage(ChatColor.RED + "You do not have permission!");
@@ -124,7 +124,7 @@ public class GuildCommand implements CommandExecutor {
 				if (args[0].equalsIgnoreCase("info")) {
 					if (args.length >= 2) {
 						if (sender.hasPermission("kaisocraft.command.guild.info.other")) {
-							if (KaisoCraft.getGuild(args[1].replaceAll("_", " ")) != null) {
+							if (KaisoCraft.getGuild(args[1]) != null) {
 								sender.sendMessage(ChatColor.DARK_AQUA + "Name: " + ChatColor.AQUA + KaisoCraft.getGuild(args[1]).getName());
 								sender.sendMessage(ChatColor.DARK_AQUA + "Description: " + ChatColor.AQUA + KaisoCraft.getGuild(args[1]).getDescription());
 								if (Bukkit.getServer().getPlayerExact(KaisoCraft.getGuild(args[1]).getLeader()) != null) {
@@ -201,11 +201,11 @@ public class GuildCommand implements CommandExecutor {
 				
 				if (args[0].equalsIgnoreCase("join")) {
 					if (args.length >= 2) {
-						if (KaisoCraft.getGuild(args[1].replaceAll("_", " ")) != null) {
+						if (KaisoCraft.getGuild(args[1]) != null) {
 							if (sender.hasPermission("kaisocraft.command.guild.join")) {
 								if (KaisoCraft.getPlayerGuild(sender.getName()) == null) {
-									KaisoCraft.getGuild(args[1].replaceAll("_", " ")).addPlayer(sender.getName());
-									sender.sendMessage(ChatColor.GREEN + "You joined the guild " + ChatColor.DARK_GREEN + args[1].replaceAll("_", " "));
+									KaisoCraft.getGuild(args[1]).addPlayer(sender.getName());
+									sender.sendMessage(ChatColor.GREEN + "You joined the guild " + ChatColor.DARK_GREEN + args[1]);
 								} else {
 									sender.sendMessage(ChatColor.RED + "You are already a member of a guild!");
 								}
@@ -241,11 +241,11 @@ public class GuildCommand implements CommandExecutor {
 					if (args.length >= 2) {
 						if (args[1].equalsIgnoreCase("name")) {
 							if (args.length >= 3) {
-								if (KaisoCraft.getGuild(args[2].replaceAll("_", " ")) != null) {
-									if (sender.hasPermission("kaisocraft.command.guild.modify.other") || (KaisoCraft.getGuild(args[2].replaceAll("_", " ")).equals(sender.getName()) && sender.hasPermission("kaisocraft.command.guild.modify.own"))) {
+								if (KaisoCraft.getGuild(args[2]) != null) {
+									if (sender.hasPermission("kaisocraft.command.guild.modify.other") || (KaisoCraft.getGuild(args[2]).equals(sender.getName()) && sender.hasPermission("kaisocraft.command.guild.modify.own"))) {
 										if (args.length >= 4) {
-											sender.sendMessage(ChatColor.GREEN + "The name of the guild " + ChatColor.DARK_GREEN + args[2].replaceAll("_", " ") + ChatColor.GREEN + " was changed to " + ChatColor.DARK_GREEN + args[3].replaceAll("_", " "));
-											KaisoCraft.getPlayerGuild(sender.getName()).setName(args[3].replaceAll("_", " "));
+											sender.sendMessage(ChatColor.GREEN + "The name of the guild " + ChatColor.DARK_GREEN + args[2] + ChatColor.GREEN + " was changed to " + ChatColor.DARK_GREEN + args[3]);
+											KaisoCraft.getPlayerGuild(sender.getName()).setName(args[3]);
 										} else {
 											sender.sendMessage(ChatColor.RED + "Incorrect usage!");
 											sender.sendMessage(ChatColor.GREEN + "Usage: /guild modify name [guildName] [name]");
@@ -265,11 +265,15 @@ public class GuildCommand implements CommandExecutor {
 						
 						if (args[1].equalsIgnoreCase("desc") || args[1].equalsIgnoreCase("description")) {
 							if (args.length >= 3) {
-								if (KaisoCraft.getGuild(args[2].replaceAll("_", " ")) != null) {
-									if (sender.hasPermission("kaisocraft.command.guild.modify.other") || (KaisoCraft.getGuild(args[2].replaceAll("_", " ")).equals(sender.getName()) && sender.hasPermission("kaisocraft.command.guild.modify.own"))) {
+								if (KaisoCraft.getGuild(args[2]) != null) {
+									if (sender.hasPermission("kaisocraft.command.guild.modify.other") || (KaisoCraft.getGuild(args[2]).equals(sender.getName()) && sender.hasPermission("kaisocraft.command.guild.modify.own"))) {
 										if (args.length >= 4) {
-											sender.sendMessage(ChatColor.GREEN + "The description of the guild " + ChatColor.DARK_GREEN + args[2].replaceAll("_", " ") + ChatColor.GREEN + " was changed to " + ChatColor.DARK_GREEN + args[3].replaceAll("_", " "));
-											KaisoCraft.getPlayerGuild(sender.getName()).setDescription(args[3].replaceAll("_", " "));
+											String desc = "";
+											for (int i = 3; i <= args.length - 1; ++i) {
+												desc += args[i] + " ";
+											}
+											sender.sendMessage(ChatColor.GREEN + "The description of the guild " + ChatColor.DARK_GREEN + args[2] + ChatColor.GREEN + " was changed to " + ChatColor.DARK_GREEN + desc);
+											KaisoCraft.getPlayerGuild(sender.getName()).setDescription(desc);
 										} else {
 											sender.sendMessage(ChatColor.RED + "Incorrect usage!");
 											sender.sendMessage(ChatColor.GREEN + "Usage: /guild modify desc [guildName] [description]");
