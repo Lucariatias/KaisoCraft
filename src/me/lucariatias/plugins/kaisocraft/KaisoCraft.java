@@ -5,7 +5,9 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.World.Environment;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
@@ -21,6 +23,15 @@ public class KaisoCraft extends JavaPlugin {
 		this.getCommand("guild").setExecutor(new GuildCommand());
 		this.getCommand("party").setExecutor(new PartyCommand());
 		guildDataManager.loadGuilds();
+		this.getServer().getPluginManager().registerEvents(new EnchantItemListener(), this);
+		this.getServer().getPluginManager().registerEvents(new EntityDamageByEntityListener(), this);
+		this.getServer().getPluginManager().registerEvents(new PlayerDeathListener(), this);
+		this.getServer().getPluginManager().registerEvents(new PlayerInteractListener(), this);
+		this.getServer().getPluginManager().registerEvents(new PlayerJoinListener(this), this);
+		this.getServer().getPluginManager().registerEvents(new PlayerLevelChangeListener(), this);
+		this.getServer().getPluginManager().registerEvents(new PlayerLoginListener(), this);
+		this.getServer().getPluginManager().registerEvents(new EntityDeathListener(), this);
+		this.getServer().getPluginManager().registerEvents(new AsyncPlayerChatListener(), this);
 	}
 	
 	public void onDisable() {
@@ -113,8 +124,15 @@ public class KaisoCraft extends JavaPlugin {
 		if (entity instanceof Player) {
 			return ((Player) entity).getLevel();
 		} else {
-			return (int) (Math.ceil(entity.getLocation().distance(entity.getWorld().getSpawnLocation()) / 32));
+			if (entity.getWorld().getEnvironment() == Environment.NORMAL) {
+				return (int) (Math.ceil(entity.getLocation().distance(entity.getWorld().getSpawnLocation()) / 32));
+			} else if (entity.getWorld().getEnvironment() == Environment.NETHER) {
+				return (int) (Math.ceil(entity.getLocation().distance(entity.getWorld().getSpawnLocation()) / 32)) + 25;
+			} else if (entity.getWorld().getEnvironment() == Environment.THE_END) {
+				return (int) (Math.ceil(entity.getLocation().distance(entity.getWorld().getSpawnLocation()) / 32)) + 50;
+			}
 		}
+		return (int) (Math.ceil(entity.getLocation().distance(entity.getWorld().getSpawnLocation()) / 32));
 	}
 	
 	/**
@@ -127,17 +145,27 @@ public class KaisoCraft extends JavaPlugin {
 	
 	/**
 	 * @param player the player to get the attack of
+	 * @param level the level to get the attack at
+	 * @return the attack of the player at the given level
+	 */
+	public static Integer getPlayerAttack(Player player, Integer level) {
+		return (int) (Math.ceil(level / 2) + 5);
+	}
+	
+	/**
+	 * @param player the player to get the attack of
 	 * @return the attack of the player
 	 */
 	public static Integer getPlayerAttack(Player player) {
-		return (int) (Math.ceil(player.getLevel() / 2) + 5);
+		return KaisoCraft.getPlayerAttack(player, player.getLevel());
 	}
 	
 	/**
 	 * @param player the player to get the defence of
+	 * @param level the level to get the defence at
 	 * @return the defence of the player
 	 */
-	public static Integer getPlayerDefence(Player player) {
+	public static Integer getPlayerDefence(Player player, Integer level) {
 		Integer defence = 0;
 		
 		if (player.getInventory().getHelmet() != null) {
@@ -236,10 +264,53 @@ public class KaisoCraft extends JavaPlugin {
 			}
 		}
 		
-		defence = (int) (Math.round(defence * (player.getLevel() / 2)));
+		defence = (int) (Math.round(defence * (level / 2)));
 		return defence;
 	}
 	
+	/**
+	 * @param player the player to get the defence of
+	 * @return the player's defence
+	 */
+	public static Integer getPlayerDefence(Player player) {
+		return KaisoCraft.getPlayerDefence(player, player.getLevel());
+	}
 	
+	//////////////////////////////////////////////////
+	//                 TEMPBAN METHODS              //
+	//////////////////////////////////////////////////
+	
+	private static Map<String, Long> banTimes = new HashMap<String, Long>();
+	
+	/**
+	 * @param player
+	 * @return whether the player is banned
+	 */
+	public static Boolean isBanned(String player) {
+		if (banTimes.get(player) != null) {
+			return (banTimes.get(player) + 300000) - System.currentTimeMillis() >= 0;
+		}
+		return false;
+	}
+	
+	/**
+	 * @param player the player to tempban
+	 * @param message the message to send to the player upon being banned
+	 */
+	public static void ban(String player, String message) {
+		banTimes.put(player, System.currentTimeMillis());
+		Bukkit.getServer().getPlayerExact(player).kickPlayer(message);
+	}
+	
+	/**
+	 * @param player the player to get the ban time remaining of
+	 * @return the ban time remaining
+	 */
+	public static String getBanTimeRemaining(String player) {
+		if (banTimes.get(player) != null) {
+			return (int) (Math.floor(((((banTimes.get(player) + 300000) - System.currentTimeMillis()) / 1000) / 60))) + "m " + ((((banTimes.get(player) + 300000) - System.currentTimeMillis()) / 1000) % 60) + "s";
+		}
+		return "0m 0s";
+	}
 
 }

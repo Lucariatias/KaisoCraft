@@ -1,6 +1,6 @@
 name: KaisoCraft
 author: Lucariatias
-version: 1.0.0-a
+version: 1.0.0-b
 main: me.lucariatias.plugins.kaisocraft.KaisoCraft
 commands:
     guild:
@@ -49,3 +49,15 @@ permissions:
     kaisocraft.command.guild.modify.other:
         description: Allows you to modify other peoples guilds
         default: op
+    kaisocraft.command.party.members:
+        description: Allows you to see your party members
+        default: true
+    kaisocraft.command.party.stats:
+        description: Allows you to see the stats of people in your party
+        default: true
+    kaisocraft.command.party.assist:
+        description: Allows you to assist members of your party
+        default: true
+    kaisocraft.command.party.trade:
+        description: Allows you to trade with members of your party
+        default: true
