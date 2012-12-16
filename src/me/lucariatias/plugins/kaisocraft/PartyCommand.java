@@ -68,13 +68,13 @@ public class PartyCommand implements CommandExecutor {
 											sender.sendMessage(ChatColor.DARK_AQUA + "Attack: " + ChatColor.AQUA + KaisoCraft.getPlayerAttack(player));
 											sender.sendMessage(ChatColor.DARK_AQUA + "Defence: " + ChatColor.AQUA + KaisoCraft.getPlayerDefence(player));
 										} else {
-											sender.sendMessage(ChatColor.DARK_RED + player.getName() + ChatColor.RED + "is not currently in your party!");
+											sender.sendMessage(ChatColor.DARK_RED + player.getName() + ChatColor.RED + " is not currently in your party!");
 										}
 									} else {
-										sender.sendMessage(ChatColor.DARK_RED + player.getName() + ChatColor.RED + "is not currently in your party!");
+										sender.sendMessage(ChatColor.DARK_RED + player.getName() + ChatColor.RED + " is not currently in your party!");
 									}
 								} else {
-									sender.sendMessage(ChatColor.DARK_RED + player.getName() + ChatColor.RED + "is not a member of your guild!");
+									sender.sendMessage(ChatColor.DARK_RED + player.getName() + ChatColor.RED + " is not a member of your guild!");
 								}
 							} else {
 								sender.sendMessage(ChatColor.RED + "That player is not currently online!");
@@ -105,13 +105,13 @@ public class PartyCommand implements CommandExecutor {
 											sender.sendMessage(ChatColor.GREEN + "Assisting " + ChatColor.DARK_GREEN + player.getName() + ChatColor.GREEN + "...");
 											((Player) sender).teleport(player.getLocation());
 										} else {
-											sender.sendMessage(ChatColor.DARK_RED + player.getName() + ChatColor.RED + "is not currently in your party!");
+											sender.sendMessage(ChatColor.DARK_RED + player.getName() + ChatColor.RED + " is not currently in your party!");
 										}
 									} else {
-										sender.sendMessage(ChatColor.DARK_RED + player.getName() + ChatColor.RED + "is not currently in your party!");
+										sender.sendMessage(ChatColor.DARK_RED + player.getName() + ChatColor.RED + " is not currently in your party!");
 									}
 								} else {
-									sender.sendMessage(ChatColor.DARK_RED + player.getName() + ChatColor.RED + "is not a member of your guild!");
+									sender.sendMessage(ChatColor.DARK_RED + player.getName() + ChatColor.RED + " is not a member of your guild!");
 								}
 							} else {
 								sender.sendMessage(ChatColor.RED + "That player is not currently online!");
@@ -152,13 +152,13 @@ public class PartyCommand implements CommandExecutor {
 												sender.sendMessage(ChatColor.RED + "No one is currently trading in this inventory!");
 											}
 										} else {
-											sender.sendMessage(ChatColor.DARK_RED + player.getName() + ChatColor.RED + "is not currently in your party!");
+											sender.sendMessage(ChatColor.DARK_RED + player.getName() + ChatColor.RED + " is not currently in your party!");
 										}
 									} else {
-										sender.sendMessage(ChatColor.DARK_RED + player.getName() + ChatColor.RED + "is not currently in your party!");
+										sender.sendMessage(ChatColor.DARK_RED + player.getName() + ChatColor.RED + " is not currently in your party!");
 									}
 								} else {
-									sender.sendMessage(ChatColor.DARK_RED + player.getName() + ChatColor.RED + "is not a member of your guild!");
+									sender.sendMessage(ChatColor.DARK_RED + player.getName() + ChatColor.RED + " is not a member of your guild!");
 								}
 							} else {
 								sender.sendMessage(ChatColor.RED + "That player is not currently online!");

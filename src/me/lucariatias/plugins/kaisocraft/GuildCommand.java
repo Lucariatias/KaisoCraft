@@ -237,6 +237,29 @@ public class GuildCommand implements CommandExecutor {
 					}
 				}
 				
+				if (args[0].equalsIgnoreCase("locate")) {
+					if (sender.hasPermission("kaisocraft.command.guild.locate")) {
+						if (args.length >= 2) {
+							if (Bukkit.getServer().getPlayer(args[1]) != null) {
+								Player player = Bukkit.getServer().getPlayer(args[1]);
+								if (KaisoCraft.getPlayerGuild(player.getName()) == KaisoCraft.getPlayerGuild(sender.getName())) {
+									sender.sendMessage(ChatColor.DARK_AQUA + player.getName() + ChatColor.AQUA + " is at " + ChatColor.DARK_AQUA + (int) (player.getLocation().getX()) + ", " + (int) (player.getLocation().getY()) + ", " + (int) (player.getLocation().getZ()) + ChatColor.AQUA + " in world " + ChatColor.DARK_AQUA + player.getWorld().getName());
+								} else {
+									sender.sendMessage(ChatColor.DARK_RED + player.getName() + ChatColor.RED + "is not a member of your guild!");
+								}
+							} else {
+								sender.sendMessage(ChatColor.RED + "That player is not currently online!");
+							}
+						} else {
+							sender.sendMessage(ChatColor.RED + "Incorrect usage!");
+							sender.sendMessage(ChatColor.GREEN + "Usage: /guild locate [player]");
+						}
+					} else {
+						sender.sendMessage(ChatColor.RED + "You do not have permission!");
+						sender.sendMessage(ChatColor.GREEN + "Permission node: " + ChatColor.DARK_GREEN + "kaisocraft.command.guild.locate");
+					}
+				}
+				
 				if (args[0].equalsIgnoreCase("modify")) {
 					if (args.length >= 2) {
 						if (args[1].equalsIgnoreCase("name")) {
@@ -266,7 +289,7 @@ public class GuildCommand implements CommandExecutor {
 						if (args[1].equalsIgnoreCase("desc") || args[1].equalsIgnoreCase("description")) {
 							if (args.length >= 3) {
 								if (KaisoCraft.getGuild(args[2]) != null) {
-									if (sender.hasPermission("kaisocraft.command.guild.modify.other") || (KaisoCraft.getGuild(args[2]).equals(sender.getName()) && sender.hasPermission("kaisocraft.command.guild.modify.own"))) {
+									if (sender.hasPermission("kaisocraft.command.guild.modify.other") || (KaisoCraft.getGuild(args[2]).getLeader().equals(sender.getName()) && sender.hasPermission("kaisocraft.command.guild.modify.own"))) {
 										if (args.length >= 4) {
 											String desc = "";
 											for (int i = 3; i <= args.length - 1; ++i) {
@@ -288,29 +311,6 @@ public class GuildCommand implements CommandExecutor {
 							} else {
 								sender.sendMessage(ChatColor.RED + "Incorrect usage!");
 								sender.sendMessage(ChatColor.GREEN + "Usage: /guild modify name [guildName] [name]");
-							}
-						}
-						
-						if (args[0].equalsIgnoreCase("locate")) {
-							if (sender.hasPermission("kaisocraft.command.party.locate")) {
-								if (args.length >= 2) {
-									if (Bukkit.getServer().getPlayer(args[1]) != null) {
-										Player player = Bukkit.getServer().getPlayer(args[1]);
-										if (KaisoCraft.getPlayerGuild(player.getName()) == KaisoCraft.getPlayerGuild(sender.getName())) {
-											sender.sendMessage(ChatColor.DARK_AQUA + player.getName() + ChatColor.AQUA + " is at " + ChatColor.DARK_AQUA + (int) (player.getLocation().getX()) + ", " + (int) (player.getLocation().getY()) + ", " + (int) (player.getLocation().getZ()) + ChatColor.AQUA + " in world " + ChatColor.DARK_AQUA + player.getWorld().getName());
-										} else {
-											sender.sendMessage(ChatColor.DARK_RED + player.getName() + ChatColor.RED + "is not a member of your guild!");
-										}
-									} else {
-										sender.sendMessage(ChatColor.RED + "That player is not currently online!");
-									}
-								} else {
-									sender.sendMessage(ChatColor.RED + "Incorrect usage!");
-									sender.sendMessage(ChatColor.GREEN + "Usage: /locate [player]");
-								}
-							} else {
-								sender.sendMessage(ChatColor.RED + "You do not have permission!");
-								sender.sendMessage(ChatColor.GREEN + "Permission node: " + ChatColor.DARK_GREEN + "kaisocraft.command.guild.modify.other");
 							}
 						}
 					}

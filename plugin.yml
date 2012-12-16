@@ -49,6 +49,9 @@ permissions:
     kaisocraft.command.guild.modify.other:
         description: Allows you to modify other peoples guilds
         default: op
+    kaisocraft.command.guild.locate:
+        description: Allows you to locate members of your guild
+        default: true
     kaisocraft.command.party.members:
         description: Allows you to see your party members
         default: true

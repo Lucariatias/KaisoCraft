@@ -203,7 +203,7 @@ public class EntityDamageByEntityListener implements Listener {
 			}
 			
 			if ((event.getDamager() instanceof LivingEntity) && !(event.getDamager() instanceof Player)) {
-				event.setDamage((int) (Math.ceil(KaisoCraft.getEntityLevel(event.getDamager()) / 4) / (KaisoCraft.getEntityLevel(event.getEntity()) + 1) / 2) * event.getDamage());
+				event.setDamage((int) (Math.ceil((KaisoCraft.getEntityLevel(event.getDamager()) / (KaisoCraft.getEntityLevel(event.getEntity()) + 1)) * event.getDamage())));
 			}
 		}
 	}

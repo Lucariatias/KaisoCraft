@@ -10,6 +10,7 @@ import org.bukkit.inventory.ItemStack;
 
 public class PlayerInteractListener implements Listener {
 	
+	@SuppressWarnings("deprecation")
 	@EventHandler
 	public void onPlayerInteract(PlayerInteractEvent event) {
 		if (event.getAction() == Action.RIGHT_CLICK_AIR) {
@@ -17,6 +18,7 @@ public class PlayerInteractListener implements Listener {
 				if (event.getPlayer().getLevel() >= 5) {
 					event.getPlayer().getInventory().removeItem(new ItemStack(Material.GLASS_BOTTLE, 1));
 					event.getPlayer().getInventory().addItem(new ItemStack(Material.EXP_BOTTLE, 1));
+					event.getPlayer().updateInventory();
 					event.getPlayer().setLevel(event.getPlayer().getLevel() - 1);
 				} else {
 					event.getPlayer().sendMessage(ChatColor.RED + "You have to be level 5 or higher to fill bottles with your experience!");
