@@ -3,8 +3,6 @@ package me.lucariatias.plugins.kaisocraft;
 import java.util.Random;
 
 import org.bukkit.ChatColor;
-import org.bukkit.entity.EntityType;
-import org.bukkit.entity.Fireball;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Projectile;
@@ -45,7 +43,7 @@ public class EntityDamageByEntityListener implements Listener {
 				}
 				
 				//Special effects
-				if (player.getLevel() >= 5) {
+				if (player.getLevel() >= 10) {
 					Random random = new Random();
 					if (random.nextInt(100) <= 7) {
 						((LivingEntity) event.getEntity()).addPotionEffect(new PotionEffect(PotionEffectType.WEAKNESS, 200, 5), true);
@@ -53,7 +51,7 @@ public class EntityDamageByEntityListener implements Listener {
 					}
 				}
 				
-				if (player.getLevel() >= 10) {
+				if (player.getLevel() >= 20) {
 					Random random = new Random();
 					if (random.nextInt(100) <= 5) {
 						((LivingEntity) event.getEntity()).addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 200, 5), true);
@@ -61,7 +59,7 @@ public class EntityDamageByEntityListener implements Listener {
 					}
 				}
 				
-				if (player.getLevel() >= 15) {
+				if (player.getLevel() >= 30) {
 					Random random = new Random();
 					if (random.nextInt(100) <= 3) {
 						((LivingEntity) event.getEntity()).addPotionEffect(new PotionEffect(PotionEffectType.POISON, 200, 5), true);
@@ -69,7 +67,7 @@ public class EntityDamageByEntityListener implements Listener {
 					}
 				}
 				
-				if (player.getLevel() >= 20) {
+				if (player.getLevel() >= 40) {
 					Random random = new Random();
 					if (random.nextInt(100) <= 5) {
 						event.getEntity().setFireTicks(60);
@@ -77,33 +75,7 @@ public class EntityDamageByEntityListener implements Listener {
 					}
 				}
 				
-				if (player.getLevel() >= 25) {
-					Random random = new Random();
-					if (random.nextInt(100) <= 3) {
-						Fireball fireball = (Fireball) player.getWorld().spawnEntity(player.getLocation(), EntityType.FIREBALL);
-						fireball.setDirection(player.getLocation().getDirection());
-						fireball.setShooter(player);
-						player.sendMessage(ChatColor.AQUA + "Special effect! Fireball!");
-					}
-				}
-				
-				if (player.getLevel() >= 30) {
-					Random random = new Random();
-					if (random.nextInt(100) <= 2) {
-						player.getWorld().createExplosion(event.getEntity().getLocation(), 1);
-						player.sendMessage(ChatColor.AQUA + "Special effect! Explode!");
-					}
-				}
-				
-				if (player.getLevel() >= 35) {
-					Random random = new Random();
-					if (random.nextInt(100) <= 1) {
-						player.getWorld().strikeLightning(event.getEntity().getLocation());
-						player.sendMessage(ChatColor.AQUA + "Special effect! Lightning!");
-					}
-				}
-				
-				if (player.getLevel() >= 40) {
+				if (player.getLevel() >= 50) {
 					Random random = new Random();
 					if (random.nextInt(100) <= 3) {
 						player.setHealth(player.getHealth() + (((LivingEntity) event.getEntity()).getMaxHealth() / 2));
@@ -132,7 +104,7 @@ public class EntityDamageByEntityListener implements Listener {
 					}
 					
 					//Special effects
-					if (player.getLevel() >= 5) {
+					if (player.getLevel() >= 10) {
 						Random random = new Random();
 						if (random.nextInt(100) <= 7) {
 							((LivingEntity) event.getEntity()).addPotionEffect(new PotionEffect(PotionEffectType.WEAKNESS, 200, 5), true);
@@ -140,7 +112,7 @@ public class EntityDamageByEntityListener implements Listener {
 						}
 					}
 					
-					if (player.getLevel() >= 10) {
+					if (player.getLevel() >= 20) {
 						Random random = new Random();
 						if (random.nextInt(100) <= 5) {
 							((LivingEntity) event.getEntity()).addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 200, 5), true);
@@ -148,7 +120,7 @@ public class EntityDamageByEntityListener implements Listener {
 						}
 					}
 					
-					if (player.getLevel() >= 15) {
+					if (player.getLevel() >= 30) {
 						Random random = new Random();
 						if (random.nextInt(100) <= 3) {
 							((LivingEntity) event.getEntity()).addPotionEffect(new PotionEffect(PotionEffectType.POISON, 200, 5), true);
@@ -156,7 +128,7 @@ public class EntityDamageByEntityListener implements Listener {
 						}
 					}
 					
-					if (player.getLevel() >= 20) {
+					if (player.getLevel() >= 40) {
 						Random random = new Random();
 						if (random.nextInt(100) <= 5) {
 							event.getEntity().setFireTicks(60);
@@ -164,33 +136,7 @@ public class EntityDamageByEntityListener implements Listener {
 						}
 					}
 					
-					if (player.getLevel() >= 25) {
-						Random random = new Random();
-						if (random.nextInt(100) <= 3) {
-							Fireball fireball = (Fireball) player.getWorld().spawnEntity(player.getLocation(), EntityType.FIREBALL);
-							fireball.setDirection(player.getLocation().getDirection());
-							fireball.setShooter(player);
-							player.sendMessage(ChatColor.AQUA + "Special effect! Fireball!");
-						}
-					}
-					
-					if (player.getLevel() >= 30) {
-						Random random = new Random();
-						if (random.nextInt(100) <= 2) {
-							player.getWorld().createExplosion(event.getEntity().getLocation(), 1);
-							player.sendMessage(ChatColor.AQUA + "Special effect! Explode!");
-						}
-					}
-					
-					if (player.getLevel() >= 35) {
-						Random random = new Random();
-						if (random.nextInt(100) <= 1) {
-							player.getWorld().strikeLightning(event.getEntity().getLocation());
-							player.sendMessage(ChatColor.AQUA + "Special effect! Lightning!");
-						}
-					}
-					
-					if (player.getLevel() >= 40) {
+					if (player.getLevel() >= 50) {
 						Random random = new Random();
 						if (random.nextInt(100) <= 3) {
 							player.setHealth(player.getHealth() + (((LivingEntity) event.getEntity()).getMaxHealth() / 2));

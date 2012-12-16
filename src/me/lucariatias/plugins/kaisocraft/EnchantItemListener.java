@@ -15,6 +15,8 @@ public class EnchantItemListener implements Listener {
 			event.setCancelled(true);
 			event.getEnchantBlock().getWorld().createExplosion(event.getEnchantBlock().getLocation(), 4F);
 			event.getEnchantBlock().getWorld().strikeLightning(event.getEnchantBlock().getLocation());
+		} else {
+			event.setExpLevelCost(0);
 		}
 	}
 

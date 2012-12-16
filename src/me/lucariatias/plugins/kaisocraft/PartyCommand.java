@@ -32,7 +32,7 @@ public class PartyCommand implements CommandExecutor {
 							if (entity instanceof LivingEntity) {
 								if (!(entity instanceof Player)) {
 									if (((Player) sender).getLocation().distance(entity.getLocation()) <= 32) {
-										sender.sendMessage(ChatColor.DARK_PURPLE + "Lvl" + ChatColor.LIGHT_PURPLE  + " " + entity.getType().toString());
+										sender.sendMessage(ChatColor.DARK_PURPLE + "Lvl" + KaisoCraft.getEntityLevel(entity) + ChatColor.LIGHT_PURPLE  + " " + entity.getType().toString());
 									}
 								} else {
 									if (KaisoCraft.getPlayerGuild(((Player) entity).getName()) != null) {
