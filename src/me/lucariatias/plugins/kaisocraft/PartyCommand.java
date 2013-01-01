@@ -42,7 +42,9 @@ public class PartyCommand implements CommandExecutor {
 											}
 										}
 									} else {
-										sender.sendMessage(ChatColor.LIGHT_PURPLE + ((Player) entity).getName() + ChatColor.DARK_PURPLE + " : Lvl" + ((Player) entity).getLevel() + " " + ChatColor.LIGHT_PURPLE + ((Player) entity).getType().toString());
+										if ((Player) entity != (Player) sender) {
+											sender.sendMessage(ChatColor.LIGHT_PURPLE + ((Player) entity).getName() + ChatColor.DARK_PURPLE + " : Lvl" + ((Player) entity).getLevel() + " " + ChatColor.LIGHT_PURPLE + ((Player) entity).getType().toString());
+										}
 									}
 								}
 							}
