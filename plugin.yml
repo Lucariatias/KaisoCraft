@@ -1,6 +1,6 @@
 name: KaisoCraft
 author: Lucariatias
-version: 1.0.0-b
+version: 1.0.1-b
 main: me.lucariatias.plugins.kaisocraft.KaisoCraft
 commands:
     guild:

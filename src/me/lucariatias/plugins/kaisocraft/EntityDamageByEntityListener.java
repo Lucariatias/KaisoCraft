@@ -19,9 +19,11 @@ public class EntityDamageByEntityListener implements Listener {
 	public void onEntityDamageByEntity(EntityDamageByEntityEvent event) {
 		
 		if (event.getDamager() instanceof Player && event.getEntity() instanceof Player) {
-			if (KaisoCraft.getPlayerGuild(((Player) event.getDamager()).getName()).equals(KaisoCraft.getPlayerGuild(((Player) event.getEntity()).getName()))) {
-				event.setCancelled(true);
-				((Player) event.getDamager()).sendMessage(ChatColor.AQUA + "You cannot hurt members of your own guild!");
+			if (KaisoCraft.getPlayerGuild(((Player) event.getDamager()).getName()) != null && KaisoCraft.getPlayerGuild(((Player) event.getEntity()).getName()) != null) {
+				if (KaisoCraft.getPlayerGuild(((Player) event.getDamager()).getName()).equals(KaisoCraft.getPlayerGuild(((Player) event.getEntity()).getName()))) {
+					event.setCancelled(true);
+					((Player) event.getDamager()).sendMessage(ChatColor.AQUA + "You cannot hurt members of your own guild!");
+				}
 			}
 		}
 		
